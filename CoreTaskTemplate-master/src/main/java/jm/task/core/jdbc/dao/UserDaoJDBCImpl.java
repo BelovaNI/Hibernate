@@ -15,6 +15,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
+    @Override
     public void createUsersTable() {
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS users (id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255) NOT NULL, " +
@@ -24,9 +25,9 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
+    @Override
     public void dropUsersTable() {
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("DROP TABLE users")) {
@@ -35,8 +36,8 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
+
     @Override
     public void saveUser(String name, String lastName, byte age) {
         try (Connection connection = Util.getConnection();
@@ -49,9 +50,9 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
+    @Override
     public void removeUserById(long id) {
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users WHERE id= ?")) {
@@ -68,7 +69,7 @@ public class UserDaoJDBCImpl implements UserDao {
         List <User> users = new ArrayList<>();
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT  * FROM users")) {
-             ResultSet rs = preparedStatement.executeQuery();
+            ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
                 User user = new User(rs.getString("name"), rs.getString("lastName"), rs.getByte("age"));
@@ -82,6 +83,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return users;
     }
 
+    @Override
     public void cleanUsersTable() {
         try (Connection connection = Util.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM users")) {
