@@ -14,7 +14,7 @@ public class UserServiceTest {
     private final byte testAge = 5;
 
 
-    @Test
+    @Test(timeout=5000)
     public void dropUsersTable() {
         try {
             userService.dropUsersTable();
@@ -24,7 +24,7 @@ public class UserServiceTest {
         }
     }
 
-    @Test
+    @Test(timeout=5000)
     public void createUsersTable() {
         try {
             userService.dropUsersTable();
@@ -34,7 +34,7 @@ public class UserServiceTest {
         }
     }
 
-    @Test
+    @Test(timeout=5000)
     public void saveUser() {
         try {
             userService.dropUsersTable();
@@ -55,7 +55,7 @@ public class UserServiceTest {
         }
     }
 
-    @Test
+    @Test(timeout=5000)
     public void removeUserById() {
         try {
             userService.dropUsersTable();
@@ -67,7 +67,7 @@ public class UserServiceTest {
         }
     }
 
-    @Test
+    @Test(timeout=5000)
     public void getAllUsers() {
         try {
             userService.dropUsersTable();
@@ -83,7 +83,7 @@ public class UserServiceTest {
         }
     }
 
-    @Test
+    @Test(timeout=5000)
     public void cleanUsersTable() {
         try {
             userService.dropUsersTable();

@@ -32,6 +32,8 @@ public class Util {
         properties.put(Environment.URL, "jdbc:mysql://localhost:3306/DataBase_1");
         properties.put(Environment.USER, "root");
         properties.put(Environment.PASS, "1Donnet!");
+        properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+        properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
         SessionFactory sessionFactory = new Configuration()
                 .setProperties(properties)
