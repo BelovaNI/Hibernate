@@ -11,6 +11,7 @@ import java.util.List;
 public class UserDaoHibernateImpl implements UserDao {
     public UserDaoHibernateImpl() {
     }
+
     @Override
     public void createUsersTable() {
         Session session = Util.getSessionFactory().openSession();
@@ -42,11 +43,11 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void removeUserById(long id) {
-        Session session ;
-        User myObject ;
+        Session session;
+        User myObject;
         session = Util.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        myObject = (User)session.load(User.class,id);
+        myObject = (User) session.load(User.class, id);
         session.delete(myObject);
         session.flush();
         transaction.commit();
@@ -54,7 +55,11 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        List<User> users = (List<User>) Util.getSessionFactory().openSession().createQuery("From User").list();
+        Session session = Util.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        List<User> users = session.createQuery("From User").list();
+        transaction.commit();
+        session.close();
         return users;
     }
 

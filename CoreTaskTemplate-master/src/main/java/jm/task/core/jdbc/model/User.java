@@ -7,17 +7,17 @@ import java.io.Serializable;
 @Table(name = "users")
 public class User implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name="name")
+    @Column
     private String name;
 
-    @Column(name="lastName")
+    @Column
     private String lastName;
 
-    @Column(name="age")
+    @Column
     private Byte age;
 
     public User() {
